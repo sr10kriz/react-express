@@ -2,7 +2,10 @@ const eventsService = require("../services/events.service");
 
 const view = async (req, res, next) => {
   try {
-    res.json(await eventsService.viewEvent());
+    let response = await eventsService.viewEvent().catch((err) => {
+      console.log("responseERROR--", err);
+    });
+    res.json(response);
   } catch (err) {
     console.log("Error", err);
     next(err);
@@ -11,7 +14,10 @@ const view = async (req, res, next) => {
 
 const create = async (req, res, next) => {
   try {
-    res.json(await eventsService.createEvent(req, res));
+    let response = await eventsService.createEvent(req, res).catch((err) => {
+      console.log("responseERROR--", err);
+    });
+    res.json(response);
   } catch (err) {
     console.log("Error", err);
     next(err);

@@ -45,6 +45,7 @@ function App() {
     try {
       setTimeout(async () => {
         const response = await axios.get("http://localhost:3030/view");
+        console.log("responseGET--", response);
         const getEventsList = response.data.responseData.map((resData) => {
           return {
             id: resData.id,
@@ -72,8 +73,8 @@ function App() {
     console.log(movie);
   }
   async function addEventHandler(event) {
-    const response = axios.post("http://localhost:3030/create", event);
-    console.log("reponse-post==>>", response);
+    const response = await axios.post("http://localhost:3030/create", event);
+    console.log("responsePOST--", response);
   }
 
   let content = <p>Found no movies.</p>;
